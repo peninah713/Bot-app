@@ -1,4 +1,4 @@
-// src/components/BotCard.js
+
 import React from 'react';
 
 function BotCard({ bot, handleClick, actionText, dischargeBot }) {
