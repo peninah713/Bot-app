@@ -1,42 +1,42 @@
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import PropertyDetail from './pages/PropertyDetail';
+import ContactUs from './pages/ContactUs';
 
-import React, { useState, useEffect } from 'react';
-import BotCollection from './components/BotCollection';
-import YourBotArmy from './components/YourBotArmy';
-
-function App() {
-  const [bots, setBots] = useState([]);
-  const [army, setArmy] = useState([]);
-
-  useEffect(() => {
-    fetch('http://localhost:8001/bots')
-      .then(response => response.json())
-      .then(data => setBots(data));
-  }, []);
-
-  const enlistBot = (bot) => {
-    if (!army.includes(bot)) {
-      setArmy([...army, bot]);
-    }
-  };
-
-  const releaseBot = (bot) => {
-    setArmy(army.filter(b => b.id !== bot.id));
-  };
-
-  const dischargeBot = (bot) => {
-    fetch(`http://localhost:8002/bots/${bot.id}`, { method: 'DELETE' })
-      .then(() => {
-        setArmy(army.filter(b => b.id !== bot.id));
-        setBots(bots.filter(b => b.id !== bot.id));
-      });
-  };
-
+const App = () => {
   return (
-    <div>
-      <YourBotArmy army={army} releaseBot={releaseBot} dischargeBot={dischargeBot} />
-      <BotCollection bots={bots} enlistBot={enlistBot} />
-    </div>
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/properties/:id" component={PropertyDetail} />
+        <Route path="/contact" component={ContactUs} />
+      </Switch>
+    </Router>
   );
-}
+};
+
+export default App;
+import React from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import PropertyDetail from './pages/PropertyDetail';
+import ContactUs from './pages/ContactUs';
+
+const App = () => {
+  return (
+    <Router>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={HomePage} />
+        <Route path="/properties/:id" component={PropertyDetail} />
+        <Route path="/contact" component={ContactUs} />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
