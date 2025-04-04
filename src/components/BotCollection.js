@@ -1,18 +1,17 @@
-
 import React from 'react';
-import BotCard from './BotCard';
+import { Link } from 'react-router-dom';
 
-function BotCollection({ bots, enlistBot }) {
+const PropertyCard = ({ property }) => {
   return (
-    <div>
-      <h2>All Bots</h2>
-      <div>
-        {bots.map(bot => (
-          <BotCard key={bot.id} bot={bot} handleClick={enlistBot} actionText="Enlist" />
-        ))}
-      </div>
+    <div className="property-card">
+      <img src={property.image} alt={property.name} />
+      <h3>{property.name}</h3>
+      <p>{property.location}</p>
+      <p>{property.price}</p>
+      <Link to={`/properties/${property.id}`}>View Details</Link>
     </div>
   );
-}
+};
 
-export default BotCollection;
+export default PropertyCard;
+
