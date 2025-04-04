@@ -1,18 +1,47 @@
+import React, { useState } from 'react';
 
-import React from 'react';
-import BotCard from './BotCard';
+const SearchBar = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
 
-function YourBotArmy({ army, releaseBot, dischargeBot }) {
+  const handleSearch = () => {
+    onSearch(query);
+  };
+
   return (
     <div>
-      <h2>Your Bot Army</h2>
-      <div>
-        {army.map(bot => (
-          <BotCard key={bot.id} bot={bot} handleClick={releaseBot} actionText="Release" dischargeBot={dischargeBot} />
-        ))}
-      </div>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search properties"
+      />
+      <button onClick={handleSearch}>Search</button>
     </div>
   );
-}
+};
 
-export default YourBotArmy;
+export default SearchBar;
+import React, { useState } from 'react';
+
+const SearchBar = ({ onSearch }) => {
+  const [query, setQuery] = useState("");
+
+  const handleSearch = () => {
+    onSearch(query);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder="Search properties"
+      />
+      <button onClick={handleSearch}>Search</button>
+    </div>
+  );
+};
+
+export default SearchBar;
+
